@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root{
+  display: flex;
+}
+
+.image-box{
+  @apply h-[60vh] md:w-[50%] w-[100%]  border-black bg-gray-200 
+}
