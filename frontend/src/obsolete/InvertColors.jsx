@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState, useRef } from "react";
 import { Button } from "@material-tailwind/react";
-import SideNav from "./SideNav";
+import SideNav from "../components/SideNav";
 import {BiRefresh, BiSolidDownload} from "react-icons/bi";
-import { showError } from './../utils/ToastOptions';  
-import { flipImageRoute } from "../utils/APIRoutes";
+import { showError } from '../utils/ToastOptions';  
+import { invertColorRoute } from "../utils/APIRoutes";
 
 
 
-function FlipImage() {
+function InvertColors() {
     
   const fileInputField = useRef(null);
 
@@ -45,25 +45,22 @@ function FlipImage() {
     formData.append('title', inputImage.name);
     console.log(formData);
     try{
-        const response = await axios.post(flipImageRoute, formData, {
+        const response = await axios.post(invertColorRoute, formData, {
           headers: {'Content-Type': 'multipart/form-data'}
         });
         console.log(response.data);
         setOutputImageUrl(response.data);
       }
-      catch (err) {
-        if (err.response.status === 400) 
-            showError('Invalid file format. Supported formats: JPG, JPEG, PNG');
-        else
-            showError('An error occurred. Please try again later.');
-    }
+      catch(err){
+        showError(err);
+      }
   };
 
   return (
     <>
       <SideNav path={0} />
       <div className="h-screen flex-1 p-7">
-        <h1 className="text-2xl font-semibold ">Flip Image</h1>
+        <h1 className="text-2xl font-semibold ">Invert Colors</h1>
         <div className="md:flex flex-y">
           <div className="image-box md:mr-4 my-4">
             <div className="bg-gray-600 flex items-center justify-between">
@@ -119,4 +116,4 @@ function FlipImage() {
   );
 }
 
-export default FlipImage;
+export default InvertColors;

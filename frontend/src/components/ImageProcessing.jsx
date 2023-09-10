@@ -1,21 +1,23 @@
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@material-tailwind/react";
 import SideNav from "./SideNav";
 import {BiRefresh, BiSolidDownload} from "react-icons/bi";
 import { showError } from './../utils/ToastOptions';  
-import { invertColorRoute } from "../utils/APIRoutes";
+import PropTypes from 'prop-types';
 
-
-
-function InvertColors() {
-    
+function ImageProcessing({ heading, serverRoute }) {
   const fileInputField = useRef(null);
-
   const [inputImage, setInputImage] = useState(null);
   const [inputImageUrl, setInputImageUrl] = useState(null);
   const [outputImageUrl, setOutputImageUrl] = useState(null);
   
+  ImageProcessing.propTypes = {
+    heading: PropTypes.string.isRequired,
+    serverRoute: PropTypes.string.isRequired,
+  };
+
+  useEffect(() => refreshState, [heading])
   
   const refreshState = () => {
     setInputImageUrl(null);
@@ -45,7 +47,7 @@ function InvertColors() {
     formData.append('title', inputImage.name);
     console.log(formData);
     try{
-        const response = await axios.post(invertColorRoute, formData, {
+        const response = await axios.post(serverRoute, formData, {
           headers: {'Content-Type': 'multipart/form-data'}
         });
         console.log(response.data);
@@ -60,7 +62,7 @@ function InvertColors() {
     <>
       <SideNav path={0} />
       <div className="h-screen flex-1 p-7">
-        <h1 className="text-2xl font-semibold ">Invert Colors</h1>
+        <h1 className="text-2xl font-semibold ">{heading}</h1>
         <div className="md:flex flex-y">
           <div className="image-box md:mr-4 my-4">
             <div className="bg-gray-600 flex items-center justify-between">
@@ -116,4 +118,4 @@ function InvertColors() {
   );
 }
 
-export default InvertColors;
+export default ImageProcessing

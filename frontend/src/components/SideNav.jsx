@@ -24,7 +24,6 @@ function SideNav({ path }) {
     const newExpandStates = [...expandStates];
     newExpandStates[index] = !newExpandStates[index];
     setExpandStates(newExpandStates);
-    console.log(newExpandStates);
   };
 
   useEffect(() => {
@@ -33,23 +32,19 @@ function SideNav({ path }) {
     }
   }, [open]);
 
-  useEffect(() => {
-    if(path != null){
-      const newExpandStates = [...expandStates];
-      newExpandStates[path] = true;
-      setExpandStates(newExpandStates);
-      console.log(newExpandStates);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if(path != null){
+  //     const newExpandStates = [...expandStates];
+  //     newExpandStates[path] = true;
+  //     setExpandStates(newExpandStates);
+  //   }
+  // }, []);
 
   useEffect(() => {
-    console.log("triggered")
     const newExpandStates = Menus.map((menu) =>
       location.pathname.startsWith(menu.path)
     );
-    newExpandStates[path] = true;
     setExpandStates(newExpandStates);
-    console.log(newExpandStates);
   }, [location.pathname]);
 
   // useEffect(() => {

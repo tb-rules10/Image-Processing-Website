@@ -4,6 +4,12 @@ export const invertColorRoute = `${host}/api/invert-color`
 
 export const flipImageRoute = `${host}/api/flip-image`
 
-// export const loginRoute = `${host}/api/auth/login`
+export const imageHistogramRoute = `${host}/api/image-histogram`
 
-// export const logoutRoute = `${host}/api/auth/logout`;
+
+
+export const featureRoutes = {
+    'invert-color': { name: 'Invert Colors', route: invertColorRoute },
+    'flip-image': { name: 'Flip Image', route: flipImageRoute },
+    'histogram': { name: 'Image Histogram', route: imageHistogramRoute },
+  };

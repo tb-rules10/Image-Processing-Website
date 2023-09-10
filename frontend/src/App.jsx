@@ -4,8 +4,6 @@ import Home from './pages/Home'
 import Images from './pages/Images'
 import Videos from './pages/Videos'
 import Slides from './pages/Slides'
-import InvertColors from './components/InvertColors'
-import FlipImage from './components/FlipImage'
 import { Path } from './data'
 
 function App() {
@@ -14,10 +12,10 @@ function App() {
       <Routes>
         <Route  path="/" element={<Home />} />
 
-        <Route  path="/images" element={<Images />} />
-        <Route path="/invert-color" element={<InvertColors />} />
-        <Route path="/flip-image" element={<FlipImage />} />
-        
+        <Route path='/images' element={<Images />}>
+            <Route path=':id' element={<Images />} /> 
+        </Route>
+
         <Route  path="/videos" element={<Videos />} />
         <Route  path="/slides" element={<Slides />} />
       </Routes>

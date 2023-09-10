@@ -30,9 +30,25 @@ async def invert_colors(file: UploadFile):
 
 # Flip Image
 @app.post("/api/flip-image")
-async def invert_colors(file: UploadFile):
+async def flip_image(file: UploadFile):
     # Return the inverted image as a Response object
     return Response(content=encode_image(flip_image(read_image(file))), headers=headers)
+
+# Flip Image
+@app.post("/api/image-histogram")
+async def image_histogram(file: UploadFile):
+    
+    # Return the inverted image as a Response object
+    return Response(content=encode_image(calculate_histogram(read_image(file))), headers=headers)
+
+
+def calculate_histogram(image):
+    # Convert the image to grayscale (assuming it's a color image)
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    # Calculate the histogram
+    hist = cv2.calcHist([gray_image], [0], None, [256], [0, 256])
+    return hist
+
 
 def flip_image(image, flip_code=1):
     return cv2.flip(image, flip_code)

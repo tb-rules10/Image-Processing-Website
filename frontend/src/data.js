@@ -2,8 +2,8 @@ import ChartFillImage from "./assets/Chart_fill.png";
 import ChatImage from "./assets/Chat.png";
 import UserImage from "./assets/User.png";
 
-export const AppName = "Designer";
 
+export const AppName = "Designer";
 export const Path = ["/images", "/videos", "/slides"]
 
 export const Menus = [
@@ -12,9 +12,9 @@ export const Menus = [
     src: ChartFillImage,
     path: "/images",
     submenu: [
-      { title: "Invert Colors", submenuPath: `/invert-color` },
-      { title: "Flip Image", submenuPath: `/flip-image` },
-      { title: "Histogram", submenuPath: `/histogram` },
+      { title: "Invert Colors", submenuPath: `${Path[0]}/invert-color` },
+      { title: "Flip Image", submenuPath: `${Path[0]}/flip-image` },
+      { title: "Histogram", submenuPath: `${Path[0]}/histogram` },
     ],
   },
   {
